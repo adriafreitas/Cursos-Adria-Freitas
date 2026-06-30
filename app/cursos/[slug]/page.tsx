@@ -20,6 +20,17 @@ export default function CursoPage() {
         className="w-full h-80 object-cover"
       />
 
+      <div className="max-w-6xl mx-auto px-8 pt-6 flex justify-end">
+
+        <Link
+          href="/meus-cursos"
+          className="rounded-full bg-yellow-500 px-6 py-3 font-bold text-[#140B1D] hover:bg-yellow-400 transition"
+        >
+          ← Voltar ao Portal
+        </Link>
+
+      </div>
+
       <div className="max-w-6xl mx-auto px-8 py-10">
 
         <h1 className="text-5xl font-bold text-yellow-400">

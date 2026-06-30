@@ -15,7 +15,7 @@ export default function Login() {
  async function entrar(e: React.FormEvent) {
   e.preventDefault();
 
-  console.log("CLICOU NO BOTÃO");
+  alert("1 - Entrou na função");
 
   setErro("");
   setLoading(true);
@@ -25,15 +25,20 @@ export default function Login() {
     password: senha,
   });
 
-  console.log("DATA:", data);
-  console.log("ERROR:", error);
+  alert("2 - Voltou do Supabase");
+
+  console.log(data);
+  console.log(error);
 
   setLoading(false);
 
   if (error) {
+    alert(error.message);
     setErro(error.message);
     return;
   }
+
+  alert("3 - Login OK");
 
   router.push("/meus-cursos");
 }
@@ -41,9 +46,13 @@ export default function Login() {
     <main className="min-h-screen bg-[#140B1D] flex items-center justify-center px-6">
 
       <form
-        onSubmit={entrar}
-        className="w-full max-w-md rounded-2xl bg-[#241236] p-8 shadow-2xl"
-      >
+  onSubmit={(e) => {
+    e.preventDefault();
+    alert("FORM SUBMIT");
+    entrar(e);
+  }}
+  className="w-full max-w-md rounded-2xl bg-[#241236] p-8 shadow-2xl"
+>
 
         <h1 className="text-4xl font-bold text-yellow-400 mb-8 text-center">
           CURSOS ÁDRIA FREITAS
@@ -73,7 +82,7 @@ export default function Login() {
           </p>
         )}
 
-       <button
+      <button
   type="submit"
   disabled={loading}
   className="w-full rounded-xl bg-yellow-500 py-4 font-bold text-black hover:bg-yellow-400"
