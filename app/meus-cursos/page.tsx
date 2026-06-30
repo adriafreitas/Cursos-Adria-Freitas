@@ -105,7 +105,7 @@ setLoading(false);
         <aside className="w-72 bg-[#1A0E25] border-r border-yellow-600/20 p-8">
 
           <h1 className="text-3xl font-bold text-yellow-400">
-            CLUBE DO TARÔ
+            ÁREA DO ALUNO
           </h1>
 
           <p className="mt-2 text-sm text-gray-400">
@@ -144,10 +144,9 @@ setLoading(false);
 
           <div className="mx-auto max-w-7xl px-12 py-12">
 
-            <p className="uppercase tracking-[0.4em] text-purple-300">
-              ÁREA DE ESTUDOS
-            </p>
-
+            <h1 className="mt-3 text-6xl font-black text-red-500">
+  TESTE VERCEL 999
+</h1>
             <h1 className="mt-3 text-6xl font-black text-yellow-400">
               Meus Cursos
             </h1>
