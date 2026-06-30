@@ -15,26 +15,42 @@ export default function Login() {
  async function entrar(e: React.FormEvent<HTMLFormElement>) {
   e.preventDefault();
 
+  console.log("1 - Entrou");
 
   setErro("");
   setLoading(true);
 
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password: senha,
-  });
+  try {
+    console.log("2 - Antes do Supabase");
 
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password: senha,
+    });
 
-  console.log(data);
-  console.log(error);
+    console.log("3 - Depois do Supabase");
+    console.log(data);
+    console.log(error);
 
-  setLoading(false);
+    setLoading(false);
 
-  if (error) {
-    alert(error.message);
-    setErro(error.message);
-    return;
+    if (error) {
+      alert(error.message);
+      setErro(error.message);
+      return;
+    }
+
+    alert("Login efetuado com sucesso.");
+
+    console.log("4 - Indo para meus-cursos");
+
+    router.push("/meus-cursos");
+  } catch (err) {
+    console.error("ERRO CAPTURADO:", err);
+    alert("Erro capturado. Veja o Console (F12).");
+    setLoading(false);
   }
+}
 
   alert("Login efetuado com sucesso.");
   router.push("/meus-cursos");
