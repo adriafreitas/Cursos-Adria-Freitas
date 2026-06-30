@@ -40,11 +40,11 @@ export default function Login() {
       return;
     }
 
-    alert("Login efetuado com sucesso.");
-
+   
     console.log("4 - Indo para meus-cursos");
 
     router.push("/meus-cursos");
+
   } catch (err) {
     console.error("ERRO CAPTURADO:", err);
     alert("Erro capturado. Veja o Console (F12).");
@@ -52,9 +52,6 @@ export default function Login() {
   }
 }
 
-  alert("Login efetuado com sucesso.");
-  router.push("/meus-cursos");
-}
   return (
     <main className="min-h-screen bg-[#140B1D] flex items-center justify-center px-6">
 
@@ -98,10 +95,11 @@ export default function Login() {
   className="w-full rounded-xl bg-yellow-500 py-4 font-bold text-black hover:bg-yellow-400"
 >
   {loading ? "Entrando..." : "Entrar"}
+
 </button>
 
-      </form>
+</form>
 
-    </main>
-  );
+</main>
+);
 }
