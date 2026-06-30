@@ -12,10 +12,9 @@ export default function Login() {
   const [erro, setErro] = useState("");
   const [loading, setLoading] = useState(false);
 
- async function entrar(e: React.FormEvent) {
+ async function entrar(e: React.FormEvent<HTMLFormElement>) {
   e.preventDefault();
 
-  alert("1 - Entrou na função");
 
   setErro("");
   setLoading(true);
@@ -25,7 +24,6 @@ export default function Login() {
     password: senha,
   });
 
-  alert("2 - Voltou do Supabase");
 
   console.log(data);
   console.log(error);
@@ -38,9 +36,8 @@ export default function Login() {
     return;
   }
 
-  alert("3 - Login OK");
-
-  router.push("/cursos/pombagira");
+  alert("Login efetuado com sucesso.");
+  router.push("/meus-cursos");
 }
   return (
     <main className="min-h-screen bg-[#140B1D] flex items-center justify-center px-6">
@@ -48,7 +45,6 @@ export default function Login() {
       <form
   onSubmit={(e) => {
     e.preventDefault();
-    alert("FORM SUBMIT");
     entrar(e);
   }}
   className="w-full max-w-md rounded-2xl bg-[#241236] p-8 shadow-2xl"

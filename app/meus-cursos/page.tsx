@@ -145,7 +145,7 @@ setLoading(false);
           <div className="mx-auto max-w-7xl px-12 py-12">
 
             <h1 className="mt-3 text-6xl font-black text-red-500">
-  TESTE VERCEL 999
+  
 </h1>
             <h1 className="mt-3 text-6xl font-black text-yellow-400">
               Meus Cursos
