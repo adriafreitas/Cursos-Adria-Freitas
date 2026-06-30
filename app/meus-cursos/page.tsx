@@ -256,6 +256,17 @@ setLoading(false);
         </section>
 
       </div>
+      <div
+  style={{
+    background: "red",
+    color: "white",
+    padding: "20px",
+    fontSize: "32px",
+    fontWeight: "bold",
+  }}
+>
+  PÁGINA NOVA - TESTE 30/06
+</div>
     </main>
   );
 }
