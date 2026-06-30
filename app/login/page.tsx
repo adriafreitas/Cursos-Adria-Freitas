@@ -40,7 +40,7 @@ export default function Login() {
 
   alert("3 - Login OK");
 
-  router.push("/meus-cursos");
+  router.push("/cursos/pombagira");
 }
   return (
     <main className="min-h-screen bg-[#140B1D] flex items-center justify-center px-6">
