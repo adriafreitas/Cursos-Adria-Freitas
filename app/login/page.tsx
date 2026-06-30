@@ -42,11 +42,9 @@ export default function Login() {
   return (
     <main className="min-h-screen bg-[#140B1D] flex items-center justify-center px-6">
 
-      <form
-  onSubmit={(e) => {
-    e.preventDefault();
-    entrar(e);
-  }}
+  <form onSubmit={entrar}
+
+
   className="w-full max-w-md rounded-2xl bg-[#241236] p-8 shadow-2xl"
 >
 
