@@ -28,9 +28,7 @@ export default function MeusCursosPage() {
   const params = new URLSearchParams(window.location.search);
   const slug = params.get("slug");
 
-  const params = new URLSearchParams(window.location.search);
-const slug = params.get("slug");
-
+ 
 console.log("SLUG:", slug);
 
   if (!slug) {
