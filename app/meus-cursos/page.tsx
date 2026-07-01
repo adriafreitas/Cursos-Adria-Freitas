@@ -24,30 +24,28 @@ export default function MeusCursosPage() {
   }, []);
 
   async function carregarCursos() {
-    const { data: { user } } = await supabase.auth.getUser();
+    const params = new URLSearchParams(window.location.search);
+const slug = params.get("slug");
 
-   if (!user) {
-  window.location.href = "https://www.magiaoriente.com.br/login";
+if (!slug) {
+  window.location.href = "https://www.magiaoriente.com.br";
   return;
 }
+    
 
-    const nomeBase =
-  user.user_metadata?.nome ??
-  user.email?.split("@")[0] ??
-  "Guardiã";
+if (cliente.nome) {
+  const primeiroNome = cliente.nome.split(" ")[0];
 
-const primeiroNome = nomeBase
-  .split(/[._\s]/)[0];
-
-setNome(
-  primeiroNome.charAt(0).toUpperCase() +
-  primeiroNome.slice(1).toLowerCase()
-);
+  setNome(
+    primeiroNome.charAt(0).toUpperCase() +
+      primeiroNome.slice(1).toLowerCase()
+  );
+}
 
     const { data: cliente } = await supabase
       .from("club_clients")
       .select("id")
-      .eq("email", user.email)
+      .eq("slug", slug)
       .single();
 
     if (!cliente) {
@@ -76,7 +74,7 @@ setNome(
   }
 
   function voltarPortal() {
-  const slug = sessionStorage.getItem("slug");
+  const slug = new URLSearchParams(window.location.search).get("slug");
 
   if (slug) {
     window.location.href = `https://www.magiaoriente.com.br/cliente/${slug}`;
@@ -85,14 +83,6 @@ setNome(
 
   window.location.href = "https://www.magiaoriente.com.br";
 }
-  if (loading) {
-    
-    return (
-      <main className="min-h-screen bg-[#140B1D] flex items-center justify-center text-white text-2xl">
-        Carregando...
-      </main>
-    );
-  }
 
   return (
     <main className="min-h-screen bg-[#140B1D] text-white">

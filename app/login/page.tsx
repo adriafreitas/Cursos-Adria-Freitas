@@ -12,7 +12,15 @@ export default function Login() {
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
   const [loading, setLoading] = useState(false);
+useEffect(() => {
+  const params = new URLSearchParams(window.location.search);
 
+  const emailUrl = params.get("email");
+
+  if (emailUrl) {
+    setEmail(emailUrl);
+  }
+}, []);
   useEffect(() => {
   async function verificarSessao() {
     const {
