@@ -76,7 +76,7 @@ setNome(
   }
 
   function voltarPortal() {
-    window.location.href = "https://www.magiadoriente.com.br";
+    window.location.href = `https://www.magiaoriente.com.br/cliente/${slug}`;
 }
 
   if (loading) {
