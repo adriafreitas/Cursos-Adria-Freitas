@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase/client";
 
@@ -11,6 +11,20 @@ export default function Login() {
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+  async function verificarSessao() {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    if (session) {
+      router.replace("/meus-cursos");
+    }
+  }
+
+  verificarSessao();
+}, [router]);
 
  async function entrar(e: React.FormEvent<HTMLFormElement>) {
   e.preventDefault();
