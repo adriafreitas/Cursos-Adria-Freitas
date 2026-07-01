@@ -24,54 +24,53 @@ export default function MeusCursosPage() {
   }, []);
 
   async function carregarCursos() {
-    const params = new URLSearchParams(window.location.search);
-const slug = params.get("slug");
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get("slug");
 
-if (!slug) {
-  window.location.href = "https://www.magiaoriente.com.br";
-  return;
-}
-    
-
-if (cliente.nome) {
-  const primeiroNome = cliente.nome.split(" ")[0];
-
-  setNome(
-    primeiroNome.charAt(0).toUpperCase() +
-      primeiroNome.slice(1).toLowerCase()
-  );
-}
-
-    const { data: cliente } = await supabase
-      .from("club_clients")
-      .select("id")
-      .eq("slug", slug)
-      .single();
-
-    if (!cliente) {
-      setLoading(false);
-      return;
-    }
-
-    const { data: aluno } = await supabase
-      .from("course_students")
-      .select("course_id")
-      .eq("club_client_id", cliente.id)
-      .single();
-
-    if (!aluno) {
-      setLoading(false);
-      return;
-    }
-
-    const { data } = await supabase
-      .from("courses")
-      .select("id,titulo,descricao,imagem_url")
-      .eq("id", aluno.course_id);
-
-    setCursos(data ?? []);
-    setLoading(false);
+  if (!slug) {
+    window.location.href = "https://www.magiaoriente.com.br";
+    return;
   }
+
+  const { data: cliente } = await supabase
+    .from("club_clients")
+    .select("id, nome")
+    .eq("slug", slug)
+    .single();
+
+  if (!cliente) {
+    setLoading(false);
+    return;
+  }
+
+  if (cliente.nome) {
+    const primeiroNome = cliente.nome.split(" ")[0];
+
+    setNome(
+      primeiroNome.charAt(0).toUpperCase() +
+        primeiroNome.slice(1).toLowerCase()
+    );
+  }
+
+  const { data: aluno } = await supabase
+    .from("course_students")
+    .select("course_id")
+    .eq("club_client_id", cliente.id)
+    .single();
+
+  if (!aluno) {
+    setLoading(false);
+    return;
+  }
+
+  const { data } = await supabase
+    .from("courses")
+    .select("id,titulo,descricao,imagem_url")
+    .eq("id", aluno.course_id);
+
+  setCursos(data ?? []);
+  setLoading(false);
+}
 
   function voltarPortal() {
   const slug = new URLSearchParams(window.location.search).get("slug");

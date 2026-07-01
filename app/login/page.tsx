@@ -21,6 +21,7 @@ useEffect(() => {
     setEmail(emailUrl);
   }
 }, []);
+
   useEffect(() => {
   async function verificarSessao() {
     const {
