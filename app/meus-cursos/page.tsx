@@ -26,10 +26,10 @@ export default function MeusCursosPage() {
   async function carregarCursos() {
     const { data: { user } } = await supabase.auth.getUser();
 
-    if (!user) {
-      router.push("/login");
-      return;
-    }
+   if (!user) {
+  window.location.href = "https://www.magiaoriente.com.br/login";
+  return;
+}
 
     const nomeBase =
   user.user_metadata?.nome ??

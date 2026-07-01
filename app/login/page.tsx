@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase/client";
 
 export default function Login() {
   const router = useRouter();
-const searchParams = useSearchParams();
-const slug = searchParams.get("slug");
+
+
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
@@ -19,13 +19,11 @@ const slug = searchParams.get("slug");
       data: { session },
     } = await supabase.auth.getSession();
 
-    if (slug) {
-  sessionStorage.setItem("slug", slug);
-}
-
-if (session) {
-  router.replace("/meus-cursos");
-}
+    
+    if (session) {
+      router.replace("/meus-cursos");
+    }
+  }
 
   verificarSessao();
 }, [router]);
