@@ -31,11 +31,18 @@ export default function MeusCursosPage() {
       return;
     }
 
-    setNome(
-      user.user_metadata?.nome ??
-      user.email?.split("@")[0] ??
-      "Guardiã"
-    );
+    const nomeBase =
+  user.user_metadata?.nome ??
+  user.email?.split("@")[0] ??
+  "Guardiã";
+
+const primeiroNome = nomeBase
+  .split(/[._\s]/)[0];
+
+setNome(
+  primeiroNome.charAt(0).toUpperCase() +
+  primeiroNome.slice(1).toLowerCase()
+);
 
     const { data: cliente } = await supabase
       .from("club_clients")
@@ -68,10 +75,9 @@ export default function MeusCursosPage() {
     setLoading(false);
   }
 
-  async function sair() {
-    await supabase.auth.signOut();
-    router.push("/login");
-  }
+  function voltarPortal() {
+    window.location.href = "https://www.magiadoriente.com.br";
+}
 
   if (loading) {
     
@@ -95,11 +101,11 @@ export default function MeusCursosPage() {
           </div>
 
           <button
-            onClick={sair}
-            className="mt-16 w-full rounded-xl bg-red-600 py-4 font-bold hover:bg-red-500"
-          >
-            Sair
-          </button>
+  onClick={voltarPortal}
+  className="mt-16 w-full rounded-xl border border-yellow-500 py-4 font-semibold text-yellow-400 transition hover:bg-yellow-500 hover:text-[#140B1D]"
+>
+  ← Voltar ao Portal
+</button>
         </aside>
 
         <section className="flex-1 overflow-auto">
