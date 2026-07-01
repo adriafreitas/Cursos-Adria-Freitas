@@ -24,8 +24,14 @@ export default function MeusCursosPage() {
   }, []);
 
   async function carregarCursos() {
+ 
   const params = new URLSearchParams(window.location.search);
   const slug = params.get("slug");
+
+  const params = new URLSearchParams(window.location.search);
+const slug = params.get("slug");
+
+console.log("SLUG:", slug);
 
   if (!slug) {
     window.location.href = "https://www.magiaoriente.com.br";
@@ -33,43 +39,63 @@ export default function MeusCursosPage() {
   }
 
   const { data: cliente } = await supabase
-    .from("club_clients")
-    .select("id, nome")
-    .eq("slug", slug)
-    .single();
+  .from("club_clients")
+  .select("id, nome, email")
+  .eq("slug", slug)
+  .single();
 
-  if (!cliente) {
-    setLoading(false);
-    return;
-  }
-
-  if (cliente.nome) {
-    const primeiroNome = cliente.nome.split(" ")[0];
-
-    setNome(
-      primeiroNome.charAt(0).toUpperCase() +
-        primeiroNome.slice(1).toLowerCase()
-    );
-  }
-
-  const { data: aluno } = await supabase
-    .from("course_students")
-    .select("course_id")
-    .eq("club_client_id", cliente.id)
-    .single();
-
-  if (!aluno) {
-    setLoading(false);
-    return;
-  }
-
-  const { data } = await supabase
-    .from("courses")
-    .select("id,titulo,descricao,imagem_url")
-    .eq("id", aluno.course_id);
-
-  setCursos(data ?? []);
+if (!cliente) {
   setLoading(false);
+  return;
+}
+
+const primeiroNome = cliente.nome.split(" ")[0];
+
+setNome(
+  primeiroNome.charAt(0).toUpperCase() +
+  primeiroNome.slice(1).toLowerCase()
+);
+
+  const { data: alunos, error: erroAlunos } = await supabase
+  .from("course_students")
+  .select("*")
+  .or(`club_client_id.eq.${cliente.id},email.eq.${cliente.email}`);
+
+console.log("CLIENTE:", cliente);
+console.log("ALUNOS:", alunos);
+console.log("ERRO ALUNOS:", erroAlunos);
+
+if (!alunos || alunos.length === 0) {
+  setCursos([]);
+  setLoading(false);
+  return;
+}
+
+  const ids = alunos
+  .map((item) => item.course_id)
+  .filter(Boolean);
+
+const { data: cursos, error } = await supabase
+  .from("courses")
+  .select("*")
+  .in("id", ids);
+
+if (error) {
+  console.error(error);
+}
+
+setCursos(cursos ?? []);
+setLoading(false);
+
+console.log("CLIENTE:", cliente);
+console.log("ALUNOS:", alunos);
+console.log("IDS:", ids);
+console.log("CURSOS:", cursos);
+
+setCursos(cursos || []);
+setLoading(false);
+setCursos(cursos || []);
+setLoading(false);
 }
 
   function voltarPortal() {
