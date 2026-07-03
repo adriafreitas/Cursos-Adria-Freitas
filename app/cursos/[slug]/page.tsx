@@ -26,7 +26,7 @@ export default function CursoPage() {
           href="/meus-cursos"
           className="rounded-full bg-yellow-500 px-6 py-3 font-bold text-[#140B1D] hover:bg-yellow-400 transition"
         >
-          ← Voltar ao Portal
+          ← Voltar 
         </Link>
 
       </div>

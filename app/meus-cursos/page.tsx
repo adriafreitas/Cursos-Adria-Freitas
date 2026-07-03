@@ -16,8 +16,9 @@ export default function MeusCursosPage() {
   const router = useRouter();
 
   const [loading, setLoading] = useState(true);
-  const [cursos, setCursos] = useState<Curso[]>([]);
-  const [nome, setNome] = useState("Guardiã");
+const [cursos, setCursos] = useState<Curso[]>([]);
+const [nome, setNome] = useState("Olá");
+const [produto, setProduto] = useState("");
 
   useEffect(() => {
     carregarCursos();
@@ -26,38 +27,66 @@ export default function MeusCursosPage() {
   async function carregarCursos() {
  
   const params = new URLSearchParams(window.location.search);
+  
   const slug = params.get("slug");
 
- 
-console.log("SLUG:", slug);
-
+  
   if (!slug) {
     window.location.href = "https://www.magiaoriente.com.br";
     return;
   }
 
-  const { data: cliente } = await supabase
-  .from("club_clients")
-  .select("id, nome, email")
-  .eq("slug", slug)
-  .single();
 
-if (!cliente) {
-  setLoading(false);
-  return;
+  // Primeiro tenta localizar um assinante
+let nomeUsuario = "";
+let emailUsuario = "";
+let clubClientId: string |null = null;
+
+const { data: cliente } = await supabase
+  .from("club_clients")
+  .select("id,nome,email,produto")
+  .eq("slug", slug)
+  .maybeSingle();
+
+if (cliente) {
+  setProduto(cliente.produto ?? "");
+  nomeUsuario = cliente.nome;
+  emailUsuario = cliente.email;
+  clubClientId = cliente.id;
+} else {
+
+  // Se não encontrou, tenta localizar um aluno externo
+  const { data: aluno } = await supabase
+    .from("course_students")
+    .select("id,nome,email")
+    .eq("slug", slug)
+    .maybeSingle();
+
+  if (!aluno) {
+    setLoading(false);
+    return;
+  }
+
+  nomeUsuario = aluno.nome;
+  emailUsuario = aluno.email;
 }
 
-const primeiroNome = cliente.nome.split(" ")[0];
+const primeiroNome = nomeUsuario.split(" ")[0];
 
 setNome(
   primeiroNome.charAt(0).toUpperCase() +
   primeiroNome.slice(1).toLowerCase()
+
 );
 
-  const { data: alunos, error: erroAlunos } = await supabase
+  const filtro = clubClientId
+  ? `club_client_id.eq.${clubClientId},email.eq.${emailUsuario}`
+  : `email.eq.${emailUsuario}`;
+
+const { data: alunos, error: erroAlunos } = await supabase
   .from("course_students")
   .select("*")
-  .or(`club_client_id.eq.${cliente.id},email.eq.${cliente.email}`);
+  .or(filtro);
 
 console.log("CLIENTE:", cliente);
 console.log("ALUNOS:", alunos);
@@ -82,31 +111,28 @@ if (error) {
   console.error(error);
 }
 
-setCursos(cursos ?? []);
-setLoading(false);
-
-console.log("CLIENTE:", cliente);
-console.log("ALUNOS:", alunos);
-console.log("IDS:", ids);
-console.log("CURSOS:", cursos);
-
-setCursos(cursos || []);
-setLoading(false);
 setCursos(cursos || []);
 setLoading(false);
 }
 
-  function voltarPortal() {
+ function voltarPortal() {
   const slug = new URLSearchParams(window.location.search).get("slug");
+  
+console.log("SLUG:", slug);
+console.log("PRODUTO:", produto);
 
-  if (slug) {
-    window.location.href = `https://www.magiaoriente.com.br/cliente/${slug}`;
+  if (!slug) {
+    window.location.href = "https://www.magiaoriente.com.br";
     return;
   }
 
-  window.location.href = "https://www.magiaoriente.com.br";
-}
+  if (produto === "Cursos") {
+    window.location.href = `https://www.magiaoriente.com.br/minha-area-alunos-externos?slug=${slug}`;
+    return;
+  }
 
+  window.location.href = `https://www.magiaoriente.com.br/cliente/${slug}`;
+}
   return (
     <main className="min-h-screen bg-[#140B1D] text-white">
       <div className="flex min-h-screen">
@@ -115,7 +141,7 @@ setLoading(false);
           <p className="mt-2 text-sm text-gray-400">Área de Estudos</p>
 
           <div className="mt-12 rounded-2xl bg-yellow-500/10 border border-yellow-500/30 p-5">
-            <p className="text-sm text-gray-300">Bem-vinda</p>
+            <p className="text-sm text-gray-300">Parabéns</p>
             <h2 className="mt-2 text-2xl font-bold">{nome}</h2>
           </div>
 
