@@ -90,7 +90,7 @@ export const pombagira = {
   pdfs: [
     {
       titulo: "Material da Aula",
-      url: ""
+      url: "https://drive.google.com/file/d/15Xl1SJRSvZjiXCUhnRlRP1Cj5kddEYUJ/view?usp=sharing"
     }
   ]
 },
@@ -108,7 +108,11 @@ export const pombagira = {
   pdfs: [
     {
       titulo: "Material da Aula",
-      url: ""
+      url: "https://drive.google.com/file/d/1xsdqwx0P4Qxm6DzNoc7j62rbOzZlqKIg/view?usp=sharing"
+    },
+    {
+      titulo: "Material complementar da aula",
+      url: "https://drive.google.com/file/d/1gGjtJ89fm_rnl4DM1z55Rh5VMLDf6T80/view?usp=sharing"
     }
   ]
 },
@@ -126,7 +130,11 @@ export const pombagira = {
       pdfs: [
         {
           titulo: "Material da Aula",
-          url: ""
+          url: "https://drive.google.com/file/d/15Xl1SJRSvZjiXCUhnRlRP1Cj5kddEYUJ/view?usp=sharing"
+        },
+        {
+          titulo: "Material complementar da aula",
+          url: "https://drive.google.com/file/d/1gGjtJ89fm_rnl4DM1z55Rh5VMLDf6T80/view?usp=sharing"
         }
       ]
     }

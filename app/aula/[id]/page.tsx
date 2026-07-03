@@ -20,6 +20,10 @@ export default async function AulaPage({
 
   const numero = Number(id);
 
+console.log(aula.pdfs);
+
+return (
+
   return (
     <main className="min-h-screen bg-[#140B1D] text-white pt-8">
 
