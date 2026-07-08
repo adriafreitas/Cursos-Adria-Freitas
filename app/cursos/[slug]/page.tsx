@@ -14,12 +14,20 @@ export default function CursoPage() {
   return (
     <main className="min-h-screen bg-[#140B1D] text-white">
 
-      <img
-        src="/images/courses/desafio-pombagira/banner-desafio.png"
-        alt="Desafio da Pombagira"
-        className="w-full h-80 object-cover"
-      />
+     {/* Desktop */}
+<img
+  src="/images/courses/desafio-pombagira/banner-desafio.png"
+  alt="Desafio da Pombagira"
+  className="hidden md:block w-full h-80 object-cover"
+/>
 
+{/* Mobile */}
+<img
+  src="/images/courses/desafio-pombagira/banner-desafio-mob.png"
+  alt="Desafio da Pombagira"
+  className="block md:hidden w-full object-cover"
+/>
+      
       <div className="max-w-6xl mx-auto px-8 pt-6 flex justify-end">
 
         <Link

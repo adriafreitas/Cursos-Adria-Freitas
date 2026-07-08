@@ -149,9 +149,6 @@ p-6
 lg:p-8
 ">
 
-
-
-
           <h1 className="text-3xl font-bold text-yellow-400">ÁREA DO ALUNO</h1>
           <p className="mt-2 text-sm text-gray-400">Área de Estudos</p>
 
@@ -191,11 +188,21 @@ lg:p-8
                   >
                     <div className="overflow-hidden rounded-[32px] border border-yellow-500/20 bg-[#241236] shadow-2xl transition duration-300 hover:-translate-y-1 hover:border-yellow-500/60">
                       <div className="relative">
-                        <img
-                          src={curso.imagem_url}
-                          alt={curso.titulo}
-                          className="h-[420px] w-full object-cover"
-                        />
+                        
+                        {/* Desktop */}
+<img
+  src="/images/courses/desafio-pombagira/banner-desafio-login.png"
+  alt={curso.titulo}
+  className="hidden md:block w-full h-[420px] object-cover"
+/>
+
+{/* Mobile */}
+<img
+  src="/images/courses/desafio-pombagira/banner-desafio-login-mob.png"
+  alt={curso.titulo}
+  className="block md:hidden w-full object-cover"
+/>
+
                         <div className="absolute inset-0 bg-gradient-to-t from-[#140B1D] via-transparent to-transparent" />
                         <div className="absolute bottom-8 left-8">
                           <span className="rounded-full bg-yellow-500 px-5 py-2 text-sm font-bold text-[#140B1D]">
