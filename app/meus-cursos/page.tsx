@@ -149,15 +149,16 @@ p-6
 lg:p-8
 ">
 
-          <h1 className="text-3xl font-bold text-yellow-400">ÁREA DO ALUNO</h1>
+          <h1 className="text-2xl md:text-3xl font-bold text-yellow-400">ÁREA DO ALUNO</h1>
           <p className="mt-2 text-sm text-gray-400">Área de Estudos</p>
 
           <div className="mt-12 rounded-2xl bg-yellow-500/10 border border-yellow-500/30 p-5">
             <p className="text-sm text-gray-300">Parabéns</p>
-            <h2 className="mt-2 text-2xl font-bold">{nome}</h2>
+            <h2 className="mt-2 text-xl md:text-2xl font-bold">{nome}</h2>
           </div>
 
           <button
+
   onClick={voltarPortal}
   className="mt-16 w-full rounded-xl border border-yellow-500 py-4 font-semibold text-yellow-400 transition hover:bg-yellow-500 hover:text-[#140B1D]"
 >
@@ -166,13 +167,15 @@ lg:p-8
         </aside>
 
         <section className="flex-1 overflow-auto">
-          <div className="mx-auto max-w-7xl px-12 py-12">
-            <h1 className="text-6xl font-black text-yellow-400">Meus Cursos</h1>
-            <p className="mt-5 text-xl text-gray-300">
+          <div className="mx-auto max-w-7xl px-5 md:px-8 lg:px-12 py-8 md:py-12">
+            <h1 className="text-3xl md:text-4xl lg:text-6xl font-black text-yellow-400 leading-tight">
+  Meus Cursos
+</h1>
+            <p className="mt-4 text-base md:text-lg lg:text-xl leading-7 text-gray-300">
               O conhecimento liberta.
             </p>
 
-            <div className="mt-12">
+            <div className="mt-8 md:mt-12">
               {cursos.length === 0 ? (
                 <div className="rounded-3xl border border-yellow-500/20 bg-[#241236] p-16 text-center">
                   <h2 className="text-3xl font-bold text-yellow-400">
@@ -211,29 +214,29 @@ lg:p-8
                         </div>
                       </div>
 
-                      <div className="grid gap-10 p-12 lg:grid-cols-[1fr_260px]">
+                     <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-6 lg:gap-10 p-6 lg:p-12">
                         <div>
-                          <p className="uppercase tracking-[0.3em] text-purple-300">
+                         <p className="uppercase tracking-[0.2em] text-xs md:text-sm text-purple-300">
                             Desenvolvimento Espiritual
                           </p>
 
-                          <h2 className="mt-4 text-5xl font-black text-yellow-400">
+                          <h2 className="mt-4 text-2xl md:text-3xl lg:text-5xl font-black text-yellow-400 leading-tight">
                             {curso.titulo}
                           </h2>
 
-                          <p className="mt-8 max-w-3xl text-xl leading-9 text-gray-300">
+                         <p className="mt-6 max-w-3xl text-base md:text-lg lg:text-xl leading-7 md:leading-8 text-gray-300">
                             {curso.descricao}
                           </p>
                         </div>
 
                         <div className="flex flex-col justify-center">
-                          <div className="rounded-2xl border border-yellow-500/20 bg-[#1A0E25] p-8">
+                          <div className="rounded-2xl border border-yellow-500/20 bg-[#1A0E25] p-6 lg:p-8">
                             <p className="text-gray-400">Status</p>
-                            <h3 className="mt-3 text-3xl font-bold text-green-400">
+                            <h3 className="mt-3 text-2xl md:text-3xl font-bold text-green-400">
                               Liberado
                             </h3>
 
-                            <div className="mt-10 w-full rounded-2xl bg-yellow-500 py-5 text-center text-lg font-bold text-[#140B1D]">
+                            <div className="mt-8 w-full rounded-2xl bg-yellow-500 py-4 md:py-5 text-center text-base md:text-lg font-bold text-[#140B1D]">
                               Continuar Curso →
                             </div>
                           </div>

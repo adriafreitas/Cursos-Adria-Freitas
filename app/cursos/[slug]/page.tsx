@@ -32,58 +32,56 @@ export default function CursoPage() {
 
         <Link
           href="/meus-cursos"
-          className="rounded-full bg-yellow-500 px-6 py-3 font-bold text-[#140B1D] hover:bg-yellow-400 transition"
-        >
+                 >
           ← Voltar 
         </Link>
 
       </div>
 
-      <div className="max-w-6xl mx-auto px-8 py-10">
+      <div className="max-w-6xl mx-auto px-5 md:px-8 py-8 md:py-10">
 
-        <h1 className="text-5xl font-bold text-yellow-400">
+        <h1 className="text-3xl md:text-4xl lg:text-6xl font-black text-yellow-400 leading-tight">
           Desafio do Poder da Sua Pombagira
         </h1>
 
-        <p className="mt-5 text-xl text-gray-300">
+        <p className="mt-4 text-base md:text-lg lg:text-xl leading-7 text-gray-300 max-w-3xl">
           Bem-vinda ao desafio. Cada dia foi preparado para conduzir você em uma jornada de fortalecimento espiritual.
         </p>
 
-        <h2 className="text-3xl font-bold mt-14 mb-8">
+        <h2 className="text-2xl md:text-3xl font-bold mt-10 lg:mt-14 mb-6 lg:mb-8 text-yellow-400">
           Aulas
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 justify-items-center">
 
-          {aulas.map((aula) => (
-            <Link
-              key={aula.dia}
-              href={`/aula/${aula.dia}`}
-            >
-              <div className="rounded-2xl bg-[#241236] overflow-hidden hover:scale-[1.02] transition cursor-pointer">
+         {aulas.map((aula) => (
+  <Link
+    key={aula.dia}
+    href={`/aula/${aula.dia}`}
+  >
+    <div className="rounded-2xl bg-[#241236] overflow-hidden hover:scale-[1.02] transition cursor-pointer">
 
-                <img
-  src={`/images/courses/desafio-pombagira/dia${aula.dia}.png`}
-  alt={`Dia ${aula.dia}`}
-  className="w-full h-auto object-cover"
-/>
+      <img
+        src={`/images/courses/desafio-pombagira/dia${aula.dia}.png`}
+        alt={`Dia ${aula.dia}`}
+        className="w-full h-auto object-cover"
+      />
 
-                <div className="p-5">
+      <div className="p-4 md:p-5">
 
-                  <h3 className="text-2xl font-bold text-yellow-400">
-                    Dia {aula.dia}
-                  </h3>
+        <h3 className="text-xl md:text-2xl font-bold text-yellow-400">
+          Dia {aula.dia}
+        </h3>
 
-                  <p className="text-gray-300 mt-2">
-                    Clique para assistir esta aula.
-                  </p>
+        <p className="mt-2 text-sm md:text-base text-gray-300 leading-6">
+          Clique para assistir esta aula.
+        </p>
 
-                </div>
+      </div>
 
-              </div>
-
-            </Link>
-          ))}
+    </div>
+  </Link>
+))}
 
         </div>
 
