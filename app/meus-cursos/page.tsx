@@ -135,8 +135,23 @@ console.log("PRODUTO:", produto);
 }
   return (
     <main className="min-h-screen bg-[#140B1D] text-white">
-      <div className="flex min-h-screen">
-        <aside className="w-72 bg-[#1A0E25] border-r border-yellow-600/20 p-8">
+      <div className="flex min-h-screen flex-col lg:flex-row">
+        
+<aside className="
+w-full
+lg:w-72
+bg-[#1A0E25]
+border-b
+lg:border-b-0
+lg:border-r
+border-yellow-600/20
+p-6
+lg:p-8
+">
+
+
+
+
           <h1 className="text-3xl font-bold text-yellow-400">ÁREA DO ALUNO</h1>
           <p className="mt-2 text-sm text-gray-400">Área de Estudos</p>
 
