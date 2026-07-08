@@ -25,15 +25,25 @@ console.log(aula.pdfs);
   return (
     <main className="min-h-screen bg-[#140B1D] text-white pt-8">
 
-      <div className="px-8">
+      <div className="px-5 md:px-8">
+
+  {/* Desktop */}
   <img
     src={aula.banner}
     alt={aula.titulo}
-    className="w-full h-80 object-cover rounded-2xl"
+    className="hidden md:block w-full h-80 object-cover rounded-2xl"
   />
+
+  {/* Mobile */}
+  <img
+    src="/images/courses/desafio-pombagira/banner-desafio-mob.png"
+    alt={aula.titulo}
+    className="block md:hidden w-full rounded-2xl"
+  />
+
 </div>
 
-      <div className="max-w-7xl mx-auto px-8 py-10">
+     <div className="max-w-7xl mx-auto px-5 md:px-8 py-8 md:py-10">
 
         <Link
           href="/cursos/pombagira"
@@ -42,11 +52,11 @@ console.log(aula.pdfs);
           ← Voltar ao Curso
         </Link>
 
-        <h1 className="text-5xl font-bold text-yellow-400 mt-6">
+        <h1 className="mt-6 text-3xl md:text-4xl lg:text-5xl font-bold text-yellow-400 leading-tight">
           {aula.titulo}
         </h1>
 
-        <p className="mt-5 text-xl text-gray-300">
+       <p className="mt-4 text-base md:text-lg lg:text-xl leading-7 text-gray-300 max-w-3xl">
           {aula.descricao}
         </p>
 
