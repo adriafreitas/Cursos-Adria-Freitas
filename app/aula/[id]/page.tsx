@@ -74,18 +74,57 @@ console.log(aula.pdfs);
 
         </div>
 
-        <div className="mt-10 space-y-4">
-  {aula.pdfs.map((pdf, index) => (
-    <a
-      key={index}
-      href={pdf.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-block rounded-xl bg-yellow-500 px-8 py-4 font-bold text-black hover:bg-yellow-400"
-    >
-      📄 {pdf.titulo}
-    </a>
-  ))}
+       <div className="mt-10">
+
+  <h2 className="mb-4 text-2xl font-bold text-yellow-400">
+    Material de Apoio
+  </h2>
+
+  {aula.pdfs.length === 0 ? (
+
+    <div className="rounded-2xl border border-yellow-500/20 bg-[#241236] p-6 text-gray-300">
+      Esta aula não possui material de apoio.
+    </div>
+
+  ) : (
+
+    <div className="space-y-4">
+
+      {aula.pdfs.map((pdf, index) => (
+
+        <a
+          key={index}
+          href={pdf.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block rounded-2xl border border-yellow-500/20 bg-[#241236] p-6 transition hover:border-yellow-500 hover:bg-[#2D1742]"
+        >
+          <div className="flex items-center justify-between">
+
+            <div>
+              <p className="text-lg font-bold text-yellow-400">
+                📄 {pdf.titulo}
+              </p>
+
+              <p className="mt-2 text-sm text-gray-400">
+                Clique para abrir ou baixar o PDF.
+              </p>
+            </div>
+
+            <span className="rounded-xl bg-yellow-500 px-4 py-2 font-bold text-[#140B1D]">
+              Abrir
+            </span>
+
+          </div>
+
+        </a>
+
+      ))}
+
+    </div>
+
+  )}
+
 </div>
 
         <div className="flex justify-between mt-16">
